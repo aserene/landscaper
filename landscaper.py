@@ -1,6 +1,8 @@
 money = 0
 
-tools = [{"name": "scissors", "cost": 5, "profit": 5}, {"name": "push mower", "cost": 25}, {"name": "battery mower", "cost": 250},{"name": "mower team", "cost": 500}]
+tools = [{"name": "teeth", "cost": 0 , "profit": 1},{"name": "scissors", "cost": 5, "profit": 5}, {"name": "push mower", "cost": 25, "profit": 10}, {"name": "battery mower", "cost": 250, "profit": 100},{"name": "mower team", "cost": 500, "profit": 250}]
+
+equipped = 0
 
 rate = 1
 
@@ -9,8 +11,8 @@ print("Welcome to Landscaper! Press '1' to Mow the Lawn. Press '2' to check your
 while(True):
     
     print(money)
-    if (money >= 5):
-        user_choice = input("You can now buy a pair of rusty scissors for $5! Would you like to buy?")
+    if (money >= tools[equipped].cost):
+        user_choice = input(f'Would you like to purchase {tools[equipped].name} for ${tools[equipped].cost}')
         if (user_choice == "y"):
             rate = 5
             money -= 5
