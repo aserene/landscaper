@@ -1,38 +1,46 @@
-money = 0
+game = {"tool": 0, "money": 0}
 
-tools = [{"name": "teeth", "cost": 0 , "profit": 1},{"name": "scissors", "cost": 5, "profit": 5}, {"name": "push mower", "cost": 25, "profit": 10}, {"name": "battery mower", "cost": 250, "profit": 100},{"name": "mower team", "cost": 500, "profit": 250}]
+tools = [
+    {"name": "teeth", "cost": 0 , "profit": 1},{"name": "scissors", "cost": 5, "profit": 5}, {"name": "push mower", "cost": 25, "profit": 10}, {"name": "battery mower", "cost": 250, "profit": 100},{"name": "mower team", "cost": 500, "profit": 250}
+    ]
 
-equipped = 0
 
-rate = 1
-
-print("Welcome to Landscaper! Press '1' to Mow the Lawn. Press '2' to check your stats. Press 'Q' to quit the game. Happy mowing!")
+def mow_lawn():
+    tool = tools[game["tool"]]
+    print(f"You mow a lawn with your {tool['name']} and make {tool['profit']}")
+def check_stats():
+    tool = tools[game["tool"]]
+    print(f"You currently have {game['money']} and are using {tool['name']} to mow lawns.")
+def upgrade():
+    if (game["tool"]>= len[tools] -1):
+        print("You have the best tool available!")
+        return 0
+    next_tool = tools[game["tool"]+1]
+    if (next_tool == None):
+        print("There are no more tools")
+        return 0
+    if (game["money"] < next_tool["cost"]):
+        print("You dont have enough money to buy that.")
+        return 0
+    print("You have updraded your tool!")
+    game["money"] -= next_tool["cost"]
+    game["tool"] += 1
+def win_check():
+    if (game["tool"] == 1 and game["money"] == 1000):
+        print("You win the game!")
+        return True
+    return False
 
 while(True):
-    
-    print(money)
-    if (money >= tools[equipped].cost):
-        user_choice = input(f'Would you like to purchase {tools[equipped].name} for ${tools[equipped].cost}')
-        if (user_choice == "y"):
-            rate = 5
-            money -= 5
-            continue
-        else:
-            continue
-    user_choice = input("[1] Mow Lawn [2] Check Stats [Q] Quit")
-    if (user_choice == "q"):
+    i = input("[1] Mow Lawn [2] Check Stats [3] Updrade [4] Quit")
+    i = int(i)
+    if (i == 1):
+        mow_lawn()
+    if (i==2):
+        check_stats()
+    if (i==3):
+        upgrade()
+    if (i==4):
+        print("You quit the game")
+    if (win_check()):
         break
-    elif (user_choice == "1"):
-        money += rate
-        print("You mowed the lawn! You earned $1.")
-        continue
-    elif (user_choice == "2"):
-        if (money == 0):
-            print("You don't have any money....")
-            continue
-        else :
-            print(f"You have earned ${money}!")
-            continue
-    else:
-        print("Please make another selection.")
-        continue
